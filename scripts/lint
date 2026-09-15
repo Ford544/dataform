@@ -6,6 +6,9 @@ bazel run @nodejs//:yarn
 # Run eslint.
 bazel build @npm//eslint/bin:eslint && bazel-bin/external/npm/eslint/bin/eslint.sh --rulesdir eslint-rules '**/*.ts'
 
+# Allow git to run inside Docker containers where container UID != workspace owner UID
+git config --global --add safe.directory "$(pwd)"
+
 # Fetch origin/main (unshallowing if running in a shallow CI clone like Cloud Build)
 git fetch origin main --unshallow 2>/dev/null || git fetch origin main
 
