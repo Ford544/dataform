@@ -6,6 +6,9 @@ bazel run //tools/registry-tools:switch_registry -- $(pwd)/yarn.lock https://us-
 # Install from trusted registry, prohibit lockfile changes.
 bazel run @nodejs//:yarn install -- --frozen-lockfile
 
+# Run lint and format checks
+./scripts/lint
+
 # Run unit tests
 ./scripts/run_tests
 
