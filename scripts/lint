@@ -6,6 +6,9 @@ bazel run @nodejs//:yarn
 # Run eslint.
 bazel build @npm//eslint/bin:eslint && bazel-bin/external/npm/eslint/bin/eslint.sh --rulesdir eslint-rules '**/*.ts'
 
+# Fetch origin/main (unshallowing if running in a shallow CI clone like Cloud Build)
+git fetch origin main --unshallow 2>/dev/null || git fetch origin main
+
 # Run prettier on .ts files changed against origin/main
 CHANGED_TS_FILES=$(git diff --name-only --diff-filter=ACMR origin/main...HEAD -- '*.ts')
 
