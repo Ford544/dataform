@@ -42,14 +42,14 @@ select 1 as \${dataform.projectConfig.vars.testVar2}
         "--vars=testVar1=testValue1,testVar2=testValue2",
         "--schema-suffix=test_schema_suffix"
       ]
-    );
+    )
 
     expect(compileResult.exitCode).equals(0);
 
     expect(JSON.parse(compileResult.stdout)).deep.equals({
       tables: [
         {
-          type: "table",
+          type : "table",
           enumType: "TABLE",
           target: {
             database: INTEGRATION_TEST_PROJECT,
